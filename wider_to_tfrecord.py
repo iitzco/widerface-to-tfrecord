@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import tensorflow as tf
 import numpy
 import cv2
@@ -93,8 +89,7 @@ def run(images_path, ground_truth_file, output_path):
     f = open(ground_truth_file)
     writer = tf.python_io.TFRecordWriter(output_path)
 
-    valid_image_num = 0
-    invalid_image_num = 0
+    i = 0
 
     print("Processing {}".format(images_path))
     while True:
@@ -102,9 +97,7 @@ def run(images_path, ground_truth_file, output_path):
             valid_face_number, tf_example = parse_example(f, images_path)
             if(valid_face_number > 0):
                 writer.write(tf_example.SerializeToString())
-                valid_image_num += 1
-            else:
-                invalid_image_num += 1
+                i += 1
         except IOError:
             break
         except Exception:
@@ -112,7 +105,7 @@ def run(images_path, ground_truth_file, output_path):
 
     writer.close()
 
-    print("Correctly created record for {} images.".format(valid_image_num)
+    print("Correctly created record for {} images".format(i))
 
 
 def main(unused_argv):
