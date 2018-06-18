@@ -19,6 +19,11 @@ The TFRecord format will allow you to use the Tensorflow Object Detection API in
 5. Run `python wider_to_tfrecord.py`
 6. When done, `tfrecord` files should be in the output folder you specified in `config.py`.
 
+
+## About testing images set
+
+Testing images do not contain ground truth bounding boxes. In case you want to convert the testing set as well, the `test.tfrecord` file will contain images only without bounding boxes.
+
 ## Acknowledgement
 
 * This work was based on [this](https://github.com/yeephycho/widerface-to-tfrecord) original version for Python2.
